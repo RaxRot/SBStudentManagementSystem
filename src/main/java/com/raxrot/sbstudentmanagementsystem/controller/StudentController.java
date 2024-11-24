@@ -53,7 +53,7 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    //handle method to handle edit student request
+    //handler method to handle edit student request
     @GetMapping("/students/{studentId}/edit")
     public String editStudent(@PathVariable("studentId")Long studentId, Model model) {
         StudentDto studentDto = studentService.getStudentById(studentId);
@@ -61,7 +61,7 @@ public class StudentController {
         return "edit_student";
     }
 
-    //handle method to handle edit submit request
+    //handler method to handle edit submit request
     @PostMapping("/students/{studentId}")
     public String updateStudent(@PathVariable("studentId")Long studentId,
                                 @Valid @ModelAttribute("student")StudentDto studentDto,
@@ -76,9 +76,18 @@ public class StudentController {
         return "redirect:/students";
     }
 
+    //handler method to handle delete submit request
     @GetMapping("/students/{studentId}/delete")
     public String deleteStudent(@PathVariable("studentId")Long studentId) {
         studentService.deleteStudent(studentId);
         return "redirect:/students";
+    }
+
+    //handler method to handle view submit request
+    @GetMapping("/students/{studentId}/view")
+    public String viewStudent(@PathVariable("studentId")Long studentId, Model model) {
+        StudentDto studentDto = studentService.getStudentById(studentId);
+        model.addAttribute("student", studentDto);
+        return "view_student";
     }
 }
