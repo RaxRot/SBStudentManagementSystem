@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/students/new}">Create Student</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/students}">All Students</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -42,6 +45,7 @@
                            placeholder="Enter First Name"
                            type="text"
                            th:field="*{firstName}">
+                    <p th:if="${#fields.hasErrors('firstName')}" class="text-danger" th:errors="*{firstName}"></p>
                 </div>
 
                     <div class="form-group mb-3">
@@ -52,6 +56,7 @@
                            placeholder="Enter Last Name"
                            type="text"
                            th:field="*{lastName}">
+                        <p th:if="${#fields.hasErrors('lastName')}" class="text-danger" th:errors="*{lastName}"></p>
                     </div>
 
                         <div class="form-group mb-3">
@@ -62,6 +67,7 @@
                            placeholder="Enter First Name"
                            type="text"
                            th:field="*{email}">
+                            <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
                         </div>
                 <button class="btn-primary" type="submit">Create</button>
             </form>
